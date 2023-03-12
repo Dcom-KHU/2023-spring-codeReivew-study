@@ -1,6 +1,7 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -35,12 +36,11 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 중복된_이름에_대한_예외처리(){
+    void 중복된_이름에_대한_예외처리() {
         String carnames = "pobi,javaji,pobi";
-        try{
+        try {
             new Application(carnames);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             assertThat(e.getClass()).isEqualTo(IllegalArgumentException.class);
             return;
         }
@@ -49,6 +49,6 @@ class ApplicationTest extends NsTest {
 
     @Override
     public void runMain() {
-        Application.main(new String[]{});
+        Application.main(new String[] {});
     }
 }
