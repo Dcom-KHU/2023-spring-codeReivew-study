@@ -13,8 +13,20 @@ public class Application {
 	public Application(String carNames) {
 		cars = new ArrayList<>();
 		String[] carNamesArray = carNames.split(CAR_NAME_DELIMITER);
+		checkDuplicateName(carNamesArray);
 		for (String carName : carNamesArray) {
 			cars.add(new Car(carName));
+		}
+	}
+
+
+	private void checkDuplicateName(String[] carNamesArray){
+		for (int i = 0; i < carNamesArray.length; i++) {
+			for (int j = i + 1; j < carNamesArray.length; j++) {
+				if (carNamesArray[i].equals(carNamesArray[j])) {
+					throw new IllegalArgumentException("[Error] 중복된 이름이 있습니다.");
+				}
+			}
 		}
 	}
 
