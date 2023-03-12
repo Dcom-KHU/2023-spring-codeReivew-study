@@ -1,7 +1,10 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -21,12 +24,9 @@ public class Application {
 
 
 	private void checkDuplicateName(String[] carNamesArray){
-		for (int i = 0; i < carNamesArray.length; i++) {
-			for (int j = i + 1; j < carNamesArray.length; j++) {
-				if (carNamesArray[i].equals(carNamesArray[j])) {
-					throw new IllegalArgumentException("[Error] 중복된 이름이 있습니다.");
-				}
-			}
+		Set<String> carNamesSet = new HashSet<>(Arrays.asList(carNamesArray));
+		if (carNamesSet.size() != carNamesArray.length) {
+			throw new IllegalArgumentException("[Error] 중복된 이름이 있습니다.");
 		}
 	}
 
