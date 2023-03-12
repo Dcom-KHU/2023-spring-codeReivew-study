@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final int MOVING_FORWARD = 4;
@@ -32,6 +32,19 @@ class ApplicationTest extends NsTest {
                 assertThat(output()).contains(ERROR_MESSAGE);
             }
         );
+    }
+
+    @Test
+    void 중복된_이름에_대한_예외처리(){
+        String carnames = "pobi,javaji,pobi";
+        try{
+            new Application(carnames);
+        }
+        catch (Exception e){
+            assertThat(e.getClass()).isEqualTo(IllegalArgumentException.class);
+            return;
+        }
+        assertThat(false).isEqualTo(true);
     }
 
     @Override
