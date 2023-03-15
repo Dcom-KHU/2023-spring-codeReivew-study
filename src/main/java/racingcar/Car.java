@@ -1,6 +1,9 @@
 package racingcar;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Car {
+    private static final int moveRate = 20;
     private final String name;
     private int position = 0;
 
@@ -8,5 +11,8 @@ public class Car {
         this.name = name;
     }
 
-    // 추가 기능 구현
+    public void randomlyGoForward() {
+        if(Randoms.pickNumberInRange(0, 100) >= moveRate)
+            position++;
+    }
 }
