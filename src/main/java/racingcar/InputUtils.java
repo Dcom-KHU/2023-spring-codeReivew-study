@@ -28,7 +28,7 @@ public class InputUtils {
 
                 return convertCarNamesIntoCarList(carNames);
             } catch (IllegalArgumentException exception) {
-                System.out.println("[Error] " + exception.getMessage());
+                System.out.println("[ERROR] " + exception.getMessage());
             }
         }
     }
@@ -44,7 +44,7 @@ public class InputUtils {
 
                 return totalRound;
             } catch (IllegalArgumentException exception) {
-                System.out.println("[Error] " + exception.getMessage());
+                System.out.println("[ERROR] " + exception.getMessage());
             }
         }
     }
