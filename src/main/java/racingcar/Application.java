@@ -11,7 +11,7 @@ public class Application {
 }
 
 class Game{
-    private int currentMove;
+    private int currentMove = 0;
     private int maxMove;
     private Car[] cars;
     Game(){
@@ -26,7 +26,9 @@ class Game{
     public void initiateGame(){
 
         makeCars(inputCarNames());
+        maxMove = inputMaxMoves();
         //printCars();
+        System.out.println(maxMove);
     }
 
     public void makeCars(String[] carNames){
@@ -37,7 +39,7 @@ class Game{
         }
     }
 
-    public static String[] inputCarNames(){
+    public String[] inputCarNames(){
 
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String userInput = readLine();
@@ -51,12 +53,42 @@ class Game{
         }
         return cars;
     }
-    public static void checkValidNames(String[] cars) {
+    public void checkValidNames(String[] cars) {
 
         for (String car : cars) {
             if (car.length() > 5) {
                 throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다.");
             }
         }
+    }
+
+    public int inputMaxMoves(){
+
+        System.out.println("시도할 회수는 몇회인가요?");
+        String userInput = readLine();
+        int inputMoves;
+        try{
+            inputMoves = checkValidMoves(userInput);
+        }
+        catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputMaxMoves();
+        }
+        return inputMoves;
+    }
+
+    public int checkValidMoves(String userInput) {
+
+        int inputMoves;
+        try{
+            inputMoves = Integer.parseInt(userInput);
+        }
+        catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
+        }
+        if(inputMoves < 0){
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 양의 정수여야 한다.");
+        }
+        return inputMoves;
     }
 }
