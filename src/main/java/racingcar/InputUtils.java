@@ -19,7 +19,6 @@ public class InputUtils {
     }
 
     public List<Car> getCarListFromInput() {
-
         while (true) {
             printCarNameInputDescription();
 
@@ -33,11 +32,35 @@ public class InputUtils {
             }
         }
     }
+    public int getTotalRoundFromInput() {
+        while (true) {
+            printTotalRoundInputDescription();
+
+            String roundInput = Console.readLine();
+            try {
+                int totalRound = convertRoundInputIntoRoundInteger(roundInput);
+
+                checkTotalRoundAvailable(totalRound);
+
+                return totalRound;
+            } catch (IllegalArgumentException exception) {
+                System.out.println("[Error] " + exception.getMessage());
+            }
+        }
+    }
 
     private List<Car> convertCarNamesIntoCarList(String carNames) throws IllegalArgumentException {
         return Arrays.stream(carNames.split(","))
                 .map(this::createCar)
                 .collect(Collectors.toList());
+    }
+
+    private Integer convertRoundInputIntoRoundInteger(String roundInput) throws IllegalArgumentException {
+        try {
+            return Integer.parseInt(roundInput);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("자연수가 아닌 값은 입력할 수 없습니다.");
+        }
     }
 
     private Car createCar(String carName) throws IllegalArgumentException {
@@ -60,8 +83,20 @@ public class InputUtils {
         }
     }
 
+    private void checkTotalRoundAvailable(int totalRound) throws IllegalArgumentException {
+        if (totalRound < 1) {
+            throw new IllegalArgumentException("자연수가 아닌 값은 입력할 수 없습니다.");
+        }
+    }
+
     private void printCarNameInputDescription() {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
     }
+
+    private void printTotalRoundInputDescription() {
+        System.out.println("시도할 회수는 몇회인가요?");
+    }
+
+
 
 }

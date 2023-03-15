@@ -5,6 +5,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         List<Car> carList = InputUtils.getInstance().getCarListFromInput();
+        int totalRound = InputUtils.getInstance().getTotalRoundFromInput();
     }
 
 
