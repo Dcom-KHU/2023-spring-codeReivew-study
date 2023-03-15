@@ -11,6 +11,10 @@ public class Car {
         return this.name;
     }
 
+    public void printCar(){
+        System.out.println(name+" : "+getPosition());
+    }
+
     public void updatePosition(){
 
         if(canAdvance()){
@@ -22,4 +26,16 @@ public class Car {
         return pickNumberInRange(0, 9) >= 4;
     }
 
+    public String getPosition(){
+
+        return repeatString(position, "-");
+    }
+
+    public static String repeatString(int count, String str){
+        StringBuilder result = new StringBuilder();
+        for(int cnt = 0; cnt < count; cnt++){
+            result.append(str);
+        }
+        return result.toString();
+    }
 }

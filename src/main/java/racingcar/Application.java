@@ -1,6 +1,5 @@
 package racingcar;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
@@ -17,18 +16,26 @@ class Game{
     Game(){
 
     }
-    /*
-    public void printCars(){
-        for(Car car : cars){
-            System.out.println(car.getName());
-        }
-    }*/
     public void initiateGame(){
 
         makeCars(inputCarNames());
         maxMove = inputMaxMoves();
-        //printCars();
-        System.out.println(maxMove);
+        playGame();
+    }
+    public void playGame(){
+        System.out.println("실행 결과");
+        while(currentMove < maxMove){
+            printProgress();
+            currentMove++;
+        }
+
+    }
+    public void printProgress(){
+        for(Car car : cars){
+            car.updatePosition();
+            car.printCar();
+        }
+        System.out.println();
     }
 
     public void makeCars(String[] carNames){
