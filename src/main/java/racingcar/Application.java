@@ -2,16 +2,16 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
-        ArrayList<Car> carList = getCarListFromInput();
+        List<Car> carList = getCarListFromInput();
     }
 
-    private static ArrayList<Car> getCarListFromInput() {
+    private static List<Car> getCarListFromInput() {
         while (true) {
             printCarNameInputDescription();
 
@@ -26,8 +26,8 @@ public class Application {
         }
     }
 
-    private static ArrayList<Car> convertCarNamesIntoCarList(String carNames) throws IllegalArgumentException {
-        return (ArrayList<Car>) Arrays.stream(carNames.split(","))
+    private static List<Car> convertCarNamesIntoCarList(String carNames) throws IllegalArgumentException {
+        return Arrays.stream(carNames.split(","))
                 .map(Application::createCar)
                 .collect(Collectors.toList());
     }
