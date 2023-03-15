@@ -12,7 +12,7 @@ public class Car {
     }
 
     public void printCar(){
-        System.out.println(name+" : "+getPosition());
+        System.out.println(name+" : "+getPositionString());
     }
 
     public void updatePosition(){
@@ -25,8 +25,11 @@ public class Car {
 
         return pickNumberInRange(0, 9) >= 4;
     }
+    public int getPosition(){
+        return position;
+    }
 
-    public String getPosition(){
+    public String getPositionString(){
 
         return repeatString(position, "-");
     }
