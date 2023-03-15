@@ -38,8 +38,9 @@ class ApplicationTest extends NsTest {
     @Test
     void 중복된_이름에_대한_예외처리() {
         String[] carnames = {"pobi", "javaji", "pobi"};
+        int maxTurnCount = 10;
         try {
-            new Application(carnames);
+            new Application(carnames, maxTurnCount);
         } catch (Exception e) {
             assertThat(e.getClass()).isEqualTo(IllegalArgumentException.class);
             return;
