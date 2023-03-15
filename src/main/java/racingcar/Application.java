@@ -11,11 +11,10 @@ public class Application {
     private static final String CAR_NAME_DELIMITER = ",";
     private final List<Car> cars;
 
-    public Application(String carNames) {
+    public Application(String[] carNames) {
         cars = new ArrayList<>();
-        String[] carNamesArray = carNames.split(CAR_NAME_DELIMITER);
-        checkDuplicateName(carNamesArray);
-        for (String carName : carNamesArray) {
+        checkDuplicateName(carNames);
+        for (String carName : carNames) {
             cars.add(new Car(carName));
         }
     }
