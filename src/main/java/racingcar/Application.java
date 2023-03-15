@@ -25,13 +25,18 @@ class Game{
     }*/
     public void initiateGame(){
 
-        String[] carNames = inputCarNames();
+        makeCars(inputCarNames());
+        //printCars();
+    }
+
+    public void makeCars(String[] carNames){
+
         cars = new Car[carNames.length];
         for(int index = 0; index < carNames.length; index++){
             cars[index] = new Car(carNames[index]);
         }
-        //printCars();
     }
+
     public static String[] inputCarNames(){
 
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
