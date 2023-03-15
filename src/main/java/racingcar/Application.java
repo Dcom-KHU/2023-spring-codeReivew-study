@@ -23,6 +23,16 @@ public class Application {
         }
     }
 
+    public void start() {
+        PrintManager.printResultMessage();
+        for (int i = 0; i < maxTurnCount; i++) {
+            for (Car car : cars) {
+                car.randomlyGoForward();
+            }
+            PrintManager.printCarData(cars);
+        }
+    }
+
     private void checkDuplicateName(String[] carNamesArray) {
         Set<String> carNamesSet = new HashSet<>(Arrays.asList(carNamesArray));
         if (carNamesSet.size() != carNamesArray.length) {
@@ -36,7 +46,7 @@ public class Application {
         }
     }
 
-    private List<Car> getWinners(){
+    private List<Car> getWinnerCars(){
         List<Car> winners = new ArrayList<>();
         int maxPosition = 0;
         for (Car car : cars) {
