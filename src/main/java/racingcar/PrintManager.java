@@ -30,4 +30,14 @@ public class PrintManager {
         }
         return dash.toString();
     }
+
+    public static void printWinner(List<Car> winnerCars) {
+        System.out.print("최종 우승자 : ");
+        for(Car winner : winnerCars){
+            System.out.print(winner.getName());
+            if(winner != winnerCars.get(winnerCars.size()-1))
+                System.out.print(", ");
+        }
+        System.out.println();
+    }
 }
