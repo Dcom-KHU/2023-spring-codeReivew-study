@@ -1,12 +1,8 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import camp.nextstep.edu.missionutils.Console;
-import java.awt.List;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import net.bytebuddy.description.type.TypeList.Generic;
+
 
 public class Car {
     private final String name;
@@ -25,8 +21,7 @@ public class Car {
         }
     }
     public static void game(ArrayList<Car> cars){
-        System.out.println("시도할 회수는 몇회인가요?");
-        int num = Integer.parseInt(Console.readLine());
+        int num = InputCheck.inputRound();
         for (int i = 0; i < num; i++){
             System.out.println("실행 결과");
             for (Car car : cars){
@@ -37,9 +32,8 @@ public class Car {
         }
     }
     public static ArrayList<Car> make(){
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉽표(,) 기준으로 구분)");
-        ArrayList<String> names = new ArrayList<>(Arrays.asList(Console.readLine().split(",")));
-        ArrayList<Car> Cars = new ArrayList<Car>();
+        ArrayList<String> names = InputCheck.inputCarNames();
+        ArrayList<Car> Cars = new ArrayList<>();
         for (String name : names){
             Cars.add(new Car(name));
         }
