@@ -33,6 +33,11 @@ public class Application {
         }
     }
 
+    public void reward(){
+        List<Car> winnerCars = getWinnerCars();
+        PrintManager.printWinner(winnerCars);
+    }
+
     private void checkDuplicateName(String[] carNamesArray) {
         Set<String> carNamesSet = new HashSet<>(Arrays.asList(carNamesArray));
         if (carNamesSet.size() != carNamesArray.length) {
@@ -61,5 +66,11 @@ public class Application {
     }
 
     public static void main(String[] args) {
+        String[] cars = InputManager.getCarNames();
+        int gameCount = InputManager.getCount();
+        Application game = new Application(cars, gameCount);
+
+        game.start();
+        game.reward();
     }
 }
