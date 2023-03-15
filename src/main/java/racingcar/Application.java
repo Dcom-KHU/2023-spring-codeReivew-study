@@ -61,7 +61,4 @@ public class Application {
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList());
     }
-
-
-
 }
