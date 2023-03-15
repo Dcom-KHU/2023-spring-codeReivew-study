@@ -2,6 +2,8 @@ package racingcar;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.ArrayList;
+
 public class Application {
     public static void main(String[] args) {
         Game game = new Game();
@@ -13,6 +15,7 @@ class Game{
     private int currentMove = 0;
     private int maxMove;
     private Car[] cars;
+    private ArrayList<String> winners;
     Game(){
 
     }
@@ -28,7 +31,8 @@ class Game{
             printProgress();
             currentMove++;
         }
-
+        winners = findWinner();
+        printWinners();
     }
     public void printProgress(){
         for(Car car : cars){
@@ -36,6 +40,11 @@ class Game{
             car.printCar();
         }
         System.out.println();
+    }
+    public void printWinners(){
+
+        String str = String.join(", ", winners);
+        System.out.println("최종 우승자 : " + str);
     }
 
     public void makeCars(String[] carNames){
@@ -98,4 +107,27 @@ class Game{
         }
         return inputMoves;
     }
+
+    public int findMaxPosition(){
+
+        int maxPosition = 0;
+        for(Car car : cars){
+            maxPosition = Math.max(maxPosition, car.getPosition());
+        }
+        return maxPosition;
+    }
+
+    public ArrayList<String> findWinner(){
+
+        ArrayList<String> winners = new ArrayList<>();
+        int maxPosition = findMaxPosition();
+
+        for(Car car : cars){
+            if(car.getPosition() == maxPosition){
+                winners.add(car.getName());
+            }
+        }
+        return winners;
+    }
+
 }
