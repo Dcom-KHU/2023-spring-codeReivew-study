@@ -37,7 +37,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 중복된_이름에_대한_예외처리() {
-        String carnames = "pobi,javaji,pobi";
+        String[] carnames = {"pobi", "javaji", "pobi"};
         try {
             new Application(carnames);
         } catch (Exception e) {
