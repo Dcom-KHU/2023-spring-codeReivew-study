@@ -13,11 +13,7 @@ public class InputManager {
     public static int getCount(){
         String inputLine = Console.readLine();
         try{
-            int count = Integer.parseInt(inputLine);
-            if(count < 1){
-                throw new IllegalArgumentException("[Error] 1 이상의 숫자를 입력해주세요.");
-            }
-            return count;
+            return Integer.parseInt(inputLine);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[Error]숫자를 입력해주세요.");
         }
