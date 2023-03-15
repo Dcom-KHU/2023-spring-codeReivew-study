@@ -20,6 +20,10 @@ public class Car {
         return this.position;
     }
 
+    public String getnam() {
+        return this.name;
+    }
+
     public String toString() {
         return String.format("%s : %s",this.name, getMoveString());
     }
