@@ -37,7 +37,11 @@ public class InputValidator {
 
     public Integer validateTrial(String trial) {
         try {
-            return Integer.parseInt(trial);
+            Integer trialNum = Integer.valueOf(trial);
+            if (trialNum < 0) {
+                throw new IllegalArgumentException("[ERROR] 시도 횟수는 음수일 수 없다.");
+            }
+            return trialNum;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
         }
