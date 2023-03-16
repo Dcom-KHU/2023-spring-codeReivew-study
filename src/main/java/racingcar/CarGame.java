@@ -21,12 +21,15 @@ public class CarGame {
     private void startGame(List<Car> cars, Integer trial) {
         for (int i = 0; i < trial; i++) {
             for (Car car : cars) {
-                go(car);
+                goOrNot(car);
             }
         }
     }
 
-    private void go(Car car) {
+    private void goOrNot(Car car) {
         int randomNum = Randoms.pickNumberInRange(0, 9);
+        if (randomNum >= 4) {
+            car.go();
+        }
     }
 }
