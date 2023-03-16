@@ -2,14 +2,17 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 
 public class CarGame {
     private final InputView inputView;
+    private final OutputView outputView;
 
     public CarGame() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void start() {
@@ -19,10 +22,12 @@ public class CarGame {
     }
 
     private void startGame(List<Car> cars, Integer trial) {
+        outputView.printInit();
         for (int i = 0; i < trial; i++) {
             for (Car car : cars) {
                 goOrNot(car);
             }
+            outputView.printResult(cars);
         }
     }
 
