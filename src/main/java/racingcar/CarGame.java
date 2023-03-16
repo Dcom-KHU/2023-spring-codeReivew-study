@@ -13,5 +13,6 @@ public class CarGame {
 
     public void start() {
         List<Car> cars = inputView.getCars();
+        Integer trial = inputView.getTrial();
     }
 }

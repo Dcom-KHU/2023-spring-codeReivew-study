@@ -41,4 +41,16 @@ public class InputView {
         inputValidator.validateCarNames(cars);
         return cars;
     }
+
+    public Integer getTrial() {
+        while (true) {
+            try {
+                System.out.println("시도할 횟수는 몇회인가요?");
+                String trial = Console.readLine();
+                return inputValidator.validateTrial(trial);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

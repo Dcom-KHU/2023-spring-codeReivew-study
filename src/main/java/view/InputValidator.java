@@ -34,4 +34,12 @@ public class InputValidator {
             }
         }
     }
+
+    public Integer validateTrial(String trial) {
+        try {
+            return Integer.parseInt(trial);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
+        }
+    }
 }
