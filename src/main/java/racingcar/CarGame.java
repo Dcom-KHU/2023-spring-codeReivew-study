@@ -31,6 +31,7 @@ public class CarGame {
             outputView.printResult(cars);
         }
         List<String> result = pickWinner(cars);
+        outputView.printFinalWinner(result);
     }
 
     private void goOrNot(Car car) {
