@@ -5,36 +5,39 @@ public class Car {
     private final String name;
     private int position = 0;
     public Car(String name) {
+
         this.name = name;
     }
-    public String getName(){
+    public String getName() {
+
         return this.name;
     }
 
-    public void printCar(){
+    public void printCar() {
+
         System.out.println(name+" : "+getPositionString());
     }
 
-    public void updatePosition(){
+    public void updatePosition() {
 
         if(canAdvance()){
             position++;
         }
     }
-    public boolean canAdvance(){
+    public boolean canAdvance() {
 
         return pickNumberInRange(0, 9) >= 4;
     }
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
 
-    public String getPositionString(){
+    public String getPositionString() {
 
         return repeatString(position, "-");
     }
 
-    public static String repeatString(int count, String str){
+    public static String repeatString(int count, String str) {
         StringBuilder result = new StringBuilder();
         for(int cnt = 0; cnt < count; cnt++){
             result.append(str);
