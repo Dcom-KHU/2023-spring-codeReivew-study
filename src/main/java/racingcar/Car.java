@@ -29,4 +29,8 @@ public class Car {
         if(s.length() > 5)
             throw new IllegalArgumentException("[Error] Car Name is over 5 letters");
     }
+
+    public static Integer getGameCount(String input) {
+        return Integer.parseInt(input);
+    }
 }
