@@ -1,6 +1,7 @@
 package racingcar.model;
 
 import racingcar.dto.CarDTO;
+import racingcar.dto.CarStatusDTO;
 import racingcar.model.domain.Car;
 
 import java.util.ArrayList;
@@ -16,6 +17,13 @@ public class RacingGame {
     }
     public void enrollCars(List<String> carNames) {
         carNames.forEach(name -> racingCars.add(new Car(name)));
+    }
+
+    public List<CarStatusDTO> repeatMovingCars(int moveCount) {
+        List<CarStatusDTO> carStatuses = new ArrayList<>();
+        for (int count = 0; count < moveCount; count++)
+            carStatuses.add(new CarStatusDTO(moveCars()));
+        return carStatuses;
     }
 
     public List<CarDTO> moveCars() {
