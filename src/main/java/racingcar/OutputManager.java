@@ -7,7 +7,7 @@ public class OutputManager {
     int maxCarNameLen = 10;
 
     public void setMaxCarNameLen(int len){
-        this.maxCarNameLen = maxCarNameLen;
+        this.maxCarNameLen = len;
     }
 
     public void printCarNameInputMessage() {
@@ -24,13 +24,17 @@ public class OutputManager {
 
     public void printCarData(List<Car> cars) {
         for (Car car : cars) {
-            String carname = car.getName();
-            for(int i =0; i<maxCarNameLen - carname.length(); i++){
-                carname += " ";
-            }
-            System.out.println(carname + " : " + getDash(car.getPosition()));
+            System.out.println(getName(car.getName()) + " : " + getDash(car.getPosition()));
         }
         System.out.println();
+    }
+    private String getName(String carName){
+        StringBuilder carNameBuilder = new StringBuilder(carName);
+        while (carNameBuilder.length() < maxCarNameLen) {
+            carNameBuilder.append(" ");
+        }
+        return carNameBuilder.toString();
+
     }
 
     private String getDash(int position) {
