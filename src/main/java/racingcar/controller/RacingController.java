@@ -1,18 +1,20 @@
 package racingcar.controller;
 
+import racingcar.model.RacingGame;
 import racingcar.view.InputView;
 
 import java.util.List;
 
 public class RacingController {
     private final InputView inputView = new InputView();
+    private static final RacingGame racingGame = new RacingGame();
 
     public void run() {
-        enrollCar();
+        enrollCarToRace();
     }
 
-    public void enrollCar() {
+    public void enrollCarToRace() {
         List<String> carNames = inputView.inputCarNames();
-        System.out.println(carNames);
+        racingGame.enrollCars(carNames);
     }
 }
