@@ -1,12 +1,14 @@
 package racingcar;
 
+import static java.lang.Integer.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Application {
+public class RacingGame {
 
     private static final String CAR_NAME_DELIMITER = ",";
     private InputManager inputManager;
@@ -14,7 +16,14 @@ public class Application {
     private List<Car> cars;
     private int maxTurnCount;
 
-    public Application(InputManager inputManager, OutputManager outputManager) {
+    public static void main(String[] args) {
+        InputManager inputManager = new InputManager();
+        OutputManager outputManager = new OutputManager();
+        RacingGame game = new RacingGame(inputManager, outputManager);
+        game.start();
+    }
+
+    public RacingGame(InputManager inputManager, OutputManager outputManager) {
         this.inputManager = inputManager;
         this.outputManager = outputManager;
     }
@@ -34,12 +43,16 @@ public class Application {
         int turn = inputManager.getCount();
         checkTurnValid(turn);
 
+
+        int maxCarNameLen = -1;
         cars = new ArrayList<>();
         this.maxTurnCount = turn;
         for (String carName : carNames) {
-            cars.add(new Car(carName));
+            cars.add(new Car(carName.trim()));
+            maxCarNameLen = max(maxCarNameLen, carName.length());
         }
 
+        outputManager.setMaxCarNameLen(maxCarNameLen);
     }
 
     private void race() {
@@ -82,14 +95,5 @@ public class Application {
             }
         }
         return winners;
-    }
-
-    public static void main(String[] args) {
-        InputManager inputManager = new InputManager();
-        OutputManager outputManager = new OutputManager();
-
-        Application game = new Application(inputManager, outputManager);
-
-        game.start();
     }
 }
