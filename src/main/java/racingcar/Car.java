@@ -30,7 +30,13 @@ public class Car {
             throw new IllegalArgumentException("[Error] Car Name is over 5 letters");
     }
 
-    public static Integer getGameCount(String input) {
-        return Integer.parseInt(input);
+    public static Integer getGameCount(String input) throws IllegalArgumentException {
+        Integer intInput;
+        try{
+            intInput = Integer.parseInt(input);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[Error] Game Count must integer type");
+        }
+        return intInput;
     }
 }
