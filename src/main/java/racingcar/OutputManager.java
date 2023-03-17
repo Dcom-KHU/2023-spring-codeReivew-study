@@ -4,6 +4,12 @@ import java.util.List;
 
 public class OutputManager {
 
+    int maxCarNameLen = 10;
+
+    public void setMaxCarNameLen(int len){
+        this.maxCarNameLen = maxCarNameLen;
+    }
+
     public void printCarNameInputMessage() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
@@ -18,7 +24,11 @@ public class OutputManager {
 
     public void printCarData(List<Car> cars) {
         for (Car car : cars) {
-            System.out.println(car.getName() + " : " + getDash(car.getPosition()));
+            String carname = car.getName();
+            for(int i =0; i<maxCarNameLen - carname.length(); i++){
+                carname += " ";
+            }
+            System.out.println(carname + " : " + getDash(car.getPosition()));
         }
         System.out.println();
     }
