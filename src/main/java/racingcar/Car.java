@@ -18,9 +18,15 @@ public class Car {
         List<String> inputList = new ArrayList(Arrays.asList(input.split(",")));
 
         for(String s : inputList) {
+            fiveValidate(s);
             Car car = new Car(s);
             carList.add(car);
         }
         return carList;
+    }
+
+    public static void fiveValidate(String s) {
+        if(s.length() > 5)
+            throw new IllegalArgumentException("[Error] Car Name is over 5 letters");
     }
 }
