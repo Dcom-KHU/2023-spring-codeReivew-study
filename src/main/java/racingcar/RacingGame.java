@@ -9,33 +9,52 @@ import java.util.Set;
 public class Application {
 
     private static final String CAR_NAME_DELIMITER = ",";
-    private final List<Car> cars;
-    private final int maxTurnCount;
+    private InputManager inputManager;
+    private OutputManager outputManager;
+    private List<Car> cars;
+    private int maxTurnCount;
 
-    public Application(String[] carNames, int maxTurnCount) {
-        checkDuplicateName(carNames);
-        checkTurnValid(maxTurnCount);
-
-        cars = new ArrayList<>();
-        this.maxTurnCount = maxTurnCount;
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+    public Application(InputManager inputManager, OutputManager outputManager) {
+        this.inputManager = inputManager;
+        this.outputManager = outputManager;
     }
 
     public void start() {
-        PrintManager.printResultMessage();
+        initGame();
+        race();
+        reward();
+    }
+
+    private void initGame() {
+        outputManager.printCarNameInputMessage();
+        String[] carNames = inputManager.getCarNames();
+        checkDuplicateName(carNames);
+
+        outputManager.printTurnInputMessage();
+        int turn = inputManager.getCount();
+        checkTurnValid(turn);
+
+        cars = new ArrayList<>();
+        this.maxTurnCount = turn;
+        for (String carName : carNames) {
+            cars.add(new Car(carName));
+        }
+
+    }
+
+    private void race() {
+        outputManager.printResultMessage();
         for (int i = 0; i < maxTurnCount; i++) {
             for (Car car : cars) {
                 car.randomlyGoForward();
             }
-            PrintManager.printCarData(cars);
+            outputManager.printCarData(cars);
         }
     }
 
-    public void reward(){
+    private void reward() {
         List<Car> winnerCars = getWinnerCars();
-        PrintManager.printWinner(winnerCars);
+        outputManager.printWinner(winnerCars);
     }
 
     private void checkDuplicateName(String[] carNamesArray) {
@@ -51,7 +70,7 @@ public class Application {
         }
     }
 
-    private List<Car> getWinnerCars(){
+    private List<Car> getWinnerCars() {
         List<Car> winners = new ArrayList<>();
         int maxPosition = 0;
         for (Car car : cars) {
@@ -66,11 +85,11 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        String[] cars = InputManager.getCarNames();
-        int gameCount = InputManager.getCount();
-        Application game = new Application(cars, gameCount);
+        InputManager inputManager = new InputManager();
+        OutputManager outputManager = new OutputManager();
+
+        Application game = new Application(inputManager, outputManager);
 
         game.start();
-        game.reward();
     }
 }
