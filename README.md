@@ -177,3 +177,14 @@ This project is [MIT](https://github.com/woowacourse/java-racingcar-precourse/bl
 
 해당 미션과 repository는 woowacourse-precourse에서 가져왔습니다.
 [링크](https://github.com/woowacourse/java-racingcar-precourse)
+
+
+---
+
+##  구현할 기능 목록
+- 경주할 자동차 이름 입력받기
+- 입력받은 자동차 이름의 유효성 검사
+- 경주 횟수 입력받기
+- 입력받은 경주 횟수의 유효성 검사
+- 경주 횟수만큼의 경주 진행
+- 경주 최종 우승자 출력하기
