@@ -27,4 +27,8 @@ public class OutputView {
         System.out.printf("최종 우승자 : %s" + System.lineSeparator(),
                 FormatParser.join(winnerNames, ", "));
     }
+
+    public void printErrorMessage(String message) {
+        System.out.printf("[ERROR] %s" + System.lineSeparator(), message);
+    }
 }
