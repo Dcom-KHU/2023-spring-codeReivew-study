@@ -44,15 +44,14 @@ public class RacingGame {
         checkTurnValid(turn);
 
 
-        int maxCarNameLen = -1;
         cars = new ArrayList<>();
         this.maxTurnCount = turn;
         for (String carName : carNames) {
-            cars.add(new Car(carName.trim()));
-            maxCarNameLen = max(maxCarNameLen, carName.length());
+            String trimed = carName.trim();
+            if(trimed.length() > 5)
+                throw new IllegalArgumentException("[Error] 이름은 5글자 이하만 가능합니다.");
+            cars.add(new Car(trimed));
         }
-
-        outputManager.setMaxCarNameLen(maxCarNameLen);
     }
 
     private void race() {
