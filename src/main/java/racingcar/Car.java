@@ -3,7 +3,7 @@ package racingcar;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Car {
-    private static final int moveRate = 20;
+    private static final int MOVE_RATE = 4;
     private final String name;
     private int position = 0;
 
@@ -12,7 +12,7 @@ public class Car {
     }
 
     public void randomlyGoForward() {
-        if(Randoms.pickNumberInRange(0, 100) >= moveRate)
+        if(Randoms.pickNumberInRange(0, 9) >= MOVE_RATE)
             position++;
     }
 
