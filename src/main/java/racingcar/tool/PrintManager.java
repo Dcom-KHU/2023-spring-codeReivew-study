@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.tool;
+
+import racingcar.game.Car;
 
 import java.util.List;
 import java.util.stream.Collectors;

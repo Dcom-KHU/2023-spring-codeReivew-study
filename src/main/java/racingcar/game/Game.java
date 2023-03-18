@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.game;
+
+import racingcar.tool.PrintManager;
 
 import java.util.Collections;
 import java.util.List;

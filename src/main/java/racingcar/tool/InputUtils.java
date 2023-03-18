@@ -1,6 +1,8 @@
-package racingcar;
+package racingcar.tool;
 
 import camp.nextstep.edu.missionutils.Console;
+
+import racingcar.game.Car;
 
 import java.util.List;
 

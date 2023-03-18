@@ -1,6 +1,8 @@
-package racingcar;
+package racingcar.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
+import racingcar.tool.StringValidator;
 
 import java.util.Arrays;
 import java.util.List;
