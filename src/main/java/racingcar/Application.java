@@ -16,6 +16,8 @@ public class Application {
             moveCars(cars);
             outputView.printExecutionResults(cars);
         }
+
+        outputView.printFinalWinner(cars);
     }
 
     private static List<Car> initializeCars(List<String> carNames) {
