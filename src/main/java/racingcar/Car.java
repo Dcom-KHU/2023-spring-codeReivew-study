@@ -15,6 +15,12 @@ public class Car {
         this.name = name;
     }
 
+    public static Car createCar(String carName) {
+        StringValidator.canCarName(carName);
+
+        return new Car(carName);
+    }
+
     public int getPosition() {
         return this.position;
     }
