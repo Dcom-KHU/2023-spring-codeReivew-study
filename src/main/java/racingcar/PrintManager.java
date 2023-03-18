@@ -19,13 +19,17 @@ public class PrintManager {
     }
 
     public static void printWinnersName(List<Car> carList) {
+        String winnersName = getWinnersString(carList);
+
+        System.out.printf("최종 우승자 : %s", winnersName);
+    }
+
+    private static String getWinnersString(List<Car> carList) {
         List<String> winnerNameList = carList.stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
 
-        String winnersName = String.join(", ", winnerNameList);
-
-        System.out.printf("최종 우승자 : %s", winnersName);
+        return String.join(", ", winnerNameList);
     }
 
     public static void printGameResultHead() {
