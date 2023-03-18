@@ -19,4 +19,12 @@ public class Car {
             this.position++;
         }
     }
+
+    public String toString() {
+        StringBuilder bar = new StringBuilder();
+        for (int i = 0; i < this.position; i++) {
+            bar.append("-");
+        }
+        return this.name + " : " + bar;
+    }
 }
