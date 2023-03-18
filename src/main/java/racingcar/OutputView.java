@@ -7,5 +7,11 @@ public class OutputView {
         for (Car car : cars) {
             System.out.println(car);
         }
+        System.out.println();
+    }
+
+    public void printPreface() {
+        System.out.println();
+        System.out.println("실행 결과");
     }
 }
