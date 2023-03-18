@@ -18,7 +18,7 @@ public class Car {
     }
 
     public static Car createCar(String carName) {
-        StringValidator.canCarName(carName);
+        StringValidator.cannotUseCarName(carName);
 
         return new Car(carName);
     }
