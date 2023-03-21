@@ -4,27 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+	private List<Car> carList = new ArrayList<>();
 
-	public static List<Car> make() {
+	public void make() {
 		List<String> names = InputCheck.inputCarNames();
-		List<Car> cars = new ArrayList<>();
 		for (String name : names) {
-			cars.add(new Car(name));
+			this.carList.add(new Car(name));
 		}
-		return cars;
 	}
 
-	private static void run(List<Car> cars) {
+	private void run() {
 		int num = InputCheck.inputRound();
 		for (int i = 0; i < num; i++) {
-			cars.forEach(Car::move);
-			Output.printProcedure(cars);
-			System.out.println();
+			this.carList.forEach(Car::move);
+			Output.printProcedure(this.carList);
 		}
 	}
 
-	public static void start(List<Car> cars) {
-		run(cars);
-		Output.printResult(cars);
+	public void start() {
+		run();
+		Output.printResult(this.carList);
 	}
 }
