@@ -2,7 +2,7 @@ package racingcar.model.domain;
 
 import racingcar.dto.CarDTO;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position = 0;
 
@@ -17,19 +17,26 @@ public class Car {
     }
 
     public void move(int number) {
+        validateNumber(number);
         if (number >= 4)
             position++;
+    }
+
+    public void validateNumber(int number) {
+        if (number < 0 || number > 9)
+            throw new IllegalArgumentException("전진하는 조건은 0에서 9 사이의 숫자일 때입니다.");
     }
 
     public String getName() {
         return name;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public CarDTO to() {
         return new CarDTO(name, position);
+    }
+
+    @Override
+    public int compareTo(Car anotherCar) {
+        return anotherCar.position - this.position;
     }
 }

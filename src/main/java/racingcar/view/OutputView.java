@@ -7,13 +7,13 @@ import racingcar.view.utils.FormatParser;
 import java.util.List;
 
 public class OutputView {
-    public void printGameResult(List<CarStatusDTO> carStatuses) {
+    public void printGameResult(List<CarStatusDTO> carStatuses) { // 경주 결과 자동차들 각각 상태 출력
         System.out.println("실행 결과");
         carStatuses.forEach(this::printCarStatuses);
     }
 
-    private void printCarStatuses(CarStatusDTO carStatusDTO) {
-        List<CarDTO> cars = carStatusDTO.getCars();
+    private void printCarStatuses(CarStatusDTO carStatus) {
+        List<CarDTO> cars = carStatus.getCars();
         cars.forEach(this::printCar);
         System.out.println();
     }

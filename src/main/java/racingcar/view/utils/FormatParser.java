@@ -10,19 +10,26 @@ public class FormatParser {
 
     public static List<String> split(String line, String delimiter) {
         validateWrongFormat(line);
-        String[] values = line.split(delimiter);
+        String[] values = line.split(delimiter); // 문자열 배열
         List<String> parsedValue = Arrays.stream(values)
                 .map(String::trim) // trim: 문자열 공백 제거
                 .collect(Collectors.toList());
         validateEmpty(parsedValue);
         return parsedValue;
     }
-
-    private static boolean validateWrongFormat(String line) {
-        if (line.isEmpty())
+    private static void validateWrongFormat(String line) {
+        if (hasWrongFormat(line)) {
             throw new IllegalArgumentException("입력값의 형식이 잘못되었습니다.");
-        return line.startsWith(",") || line.endsWith(",");
         }
+    }
+
+    private static boolean hasWrongFormat(String line) {
+        if (line.isEmpty()) {
+            return true;
+        }
+        return line.startsWith(",") || line.endsWith(",");
+    }
+
     private static void validateEmpty(List<String> values) {
         if (hasEmptyValue(values))
             throw new IllegalArgumentException("입력값에 빈 문자열이 있습니다.");

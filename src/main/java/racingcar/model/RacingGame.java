@@ -5,6 +5,7 @@ import racingcar.dto.CarStatusDTO;
 import racingcar.model.domain.Car;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ public class RacingGame {
     public RacingGame(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
+
     public void enrollCars(List<String> carNames) {
         carNames.forEach(name -> racingCars.add(new Car(name)));
     }
@@ -34,19 +36,17 @@ public class RacingGame {
     }
 
     public List<String> findWinners() {
-        List<String> winnerNames = new ArrayList<>();
-        int maxPosition = 0;
+        List<String> winners = new ArrayList<>();
         for (Car car : racingCars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
+            if (findAnyHeadCar().compareTo(car) == 0)
+                winners.add(car.getName());
         }
-        findCarsAtPosition(maxPosition).forEach(car ->
-                winnerNames.add(car.getName()));
-        return winnerNames;
+        return winners;
     }
 
-    private List<Car> findCarsAtPosition(int position) {
-        return racingCars.stream()
-                .filter(car -> car.getPosition() == position)
-                .collect(Collectors.toList());
+    private Car findAnyHeadCar() {
+        List<Car> sortedCars = new ArrayList<>(racingCars);
+        Collections.sort(sortedCars); // Car 클래스의 compareTo()로 인해 position에 따라 많이 전진한 순대로 정렬
+        return sortedCars.get(0);
     }
 }

@@ -4,7 +4,7 @@ public class NumberParser {
     private NumberParser() {}
 
     public static int parseDigit(String value) {
-        int number = parseInteger(value);
+        int number = parseInteger(value); // 입력값을 정수로 변환
         if (number <= 0)
             throw new IllegalArgumentException("입력값이 자연수가 아닙니다.");
 

@@ -11,8 +11,8 @@ public class ExceptionHandler {
             try {
                 runnable.run();
                 return;
-            } catch (IllegalArgumentException exception) {
-                exceptionMessageHandling.accept(exception.getMessage());
+            } catch (IllegalArgumentException e) {
+                exceptionMessageHandling.accept(e.getMessage());
             }
         }
     }

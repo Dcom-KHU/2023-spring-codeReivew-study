@@ -15,12 +15,17 @@ public class RacingController {
     private final RacingGame racingGame = new RacingGame(new RandomNumberGenerator());
 
     public void run() {
-        executeFunction(this::enrollCarToRace);
-        executeFunction(this::moveCarsByCount);
-        executeFunction(this::showWinners);
+        try {
+            repeatUntilGetLegalAnswer(this::enrollCarToRace);
+            repeatUntilGetLegalAnswer(this::moveCarsByCount);
+            showWinners();
+        } catch (Exception e) {
+            e.printStackTrace();
+            outputView.printErrorMessage(e.getMessage());
+        }
     }
 
-    private void executeFunction(Runnable runnable) {
+    private void repeatUntilGetLegalAnswer(Runnable runnable) {
         ExceptionHandler.retryForIllegalArgument(runnable, outputView::printErrorMessage);
     }
 
@@ -31,8 +36,7 @@ public class RacingController {
 
     private void moveCarsByCount() {
         int moveCount = inputView.inputMoveCount();
-        // moveCount만큼 반복 이동
-        List<CarStatusDTO> carStatuses = racingGame.repeatMovingCars(moveCount);
+        List<CarStatusDTO> carStatuses = racingGame.repeatMovingCars(moveCount); // moveCount만큼 반복 이동
         outputView.printGameResult(carStatuses);
     }
 
