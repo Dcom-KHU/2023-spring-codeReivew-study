@@ -1,10 +1,10 @@
 package racingcar;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 	public static void main(String[] args) {
-		ArrayList<Car> cars = Car.make();
+		List<Car> cars = Car.make();
 		Car.game(cars);
 		Car.printResult(cars);
 	}

@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -17,16 +18,18 @@ public class Car {
 	}
 
 	// 추가 기능 구현
-	public void move() {
+	private void move() {
 		if (Randoms.pickNumberInRange(0, 9) >= 4) {
 			this.position += 1;
 		}
 	}
 
-	public static void game(ArrayList<Car> cars) {
+	public static void game(List<Car> cars) {
 		int num = InputCheck.inputRound();
 		for (int i = 0; i < num; i++) {
 			System.out.println("실행 결과");
+			// cars.forEach(Car::move);
+			// cars.forEach(Car::printProgress);
 			for (Car car : cars) {
 				car.move();
 				car.printProgress();
@@ -35,9 +38,9 @@ public class Car {
 		}
 	}
 
-	public static ArrayList<Car> make() {
-		ArrayList<String> names = InputCheck.inputCarNames();
-		ArrayList<Car> cars = new ArrayList<>();
+	public static List<Car> make() {
+		List<String> names = InputCheck.inputCarNames();
+		List<Car> cars = new ArrayList<>();
 		for (String name : names) {
 			cars.add(new Car(name));
 		}
@@ -49,7 +52,7 @@ public class Car {
 		System.out.printf("%s : %s%n", this.name, distance);
 	}
 
-	public static void printResult(ArrayList<Car> cars) {
+	public static void printResult(List<Car> cars) {
 		String winner = "";
 		int winnerScore = -1;
 
