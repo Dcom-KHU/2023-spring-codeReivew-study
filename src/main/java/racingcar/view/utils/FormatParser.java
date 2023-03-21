@@ -47,7 +47,7 @@ public class FormatParser {
     public static String make(int count, String unit) {
         String units = "";
         for (int i = 0; i < count; i++)
-            units = units + unit.charAt(i);
+            units = units + unit.charAt(0);
         return units;
     }
 }
