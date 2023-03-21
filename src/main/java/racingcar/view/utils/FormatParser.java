@@ -45,6 +45,9 @@ public class FormatParser {
     }
 
     public static String make(int count, String unit) {
-        return unit.repeat(count);
+        String units = "";
+        for (int i = 0; i < count; i++)
+            units = units + unit.charAt(i);
+        return units;
     }
 }
