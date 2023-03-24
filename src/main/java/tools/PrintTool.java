@@ -1,12 +1,12 @@
 package tools;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import racingcar.Car;
 
 public class PrintTool {
 
-	public static void printProgress(Car[] cars) {
+	public static void printProgress(List<Car> cars) {
 		for (Car car : cars) {
 			car.updatePosition();
 			printCarPosition(car);
@@ -19,7 +19,7 @@ public class PrintTool {
 		System.out.println(car.getName() + " : " + car.getPositionString());
 	}
 
-	public static void printWinners(ArrayList<String> winners) {
+	public static void printWinners(List<String> winners) {
 
 		String str = String.join(", ", winners);
 		System.out.println("최종 우승자 : " + str);

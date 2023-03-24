@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tools.InputTool;
 import tools.PrintTool;
@@ -8,10 +9,10 @@ import tools.PrintTool;
 public class Game {
 	private int currentMove = 0;
 	private int maxMove;
-	private Car[] cars;
-	private ArrayList<String> winners;
+	private final List<Car> cars;
 
 	Game() {
+		cars = new ArrayList<>();
 	}
 
 	public void initiateGame() {
@@ -23,9 +24,8 @@ public class Game {
 
 	public void setCars(String[] carNames) {
 
-		cars = new Car[carNames.length];
-		for (int index = 0; index < carNames.length; index++) {
-			cars[index] = new Car(carNames[index]);
+		for (String carName : carNames) {
+			cars.add(new Car(carName));
 		}
 	}
 
@@ -49,13 +49,12 @@ public class Game {
 			PrintTool.printProgress(cars);
 			currentMove++;
 		}
-		winners = findWinner();
-		PrintTool.printWinners(winners);
+		PrintTool.printWinners(findWinner());
 	}
 
-	public ArrayList<String> findWinner() {
+	public List<String> findWinner() {
 
-		ArrayList<String> winners = new ArrayList<>();
+		List<String> winners = new ArrayList<>();
 		int maxPosition = findMaxPosition();
 
 		for (Car car : cars) {
