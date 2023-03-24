@@ -17,18 +17,6 @@ public class Car {
 		return this.name;
 	}
 
-	public void updatePosition() {
-
-		if (canAdvance()) {
-			position++;
-		}
-	}
-
-	public boolean canAdvance() {
-
-		return Randoms.pickNumberInRange(0, 9) >= 4;
-	}
-
 	public int getPosition() {
 
 		return position;
@@ -37,6 +25,18 @@ public class Car {
 	public String getPositionString() {
 
 		return Utility.repeatString(position, "-");
+	}
+
+	public void updatePosition() {
+
+		if (canAdvance()) {
+			position++;
+		}
+	}
+
+	private boolean canAdvance() {
+
+		return Randoms.pickNumberInRange(0, 9) >= 4;
 	}
 
 }

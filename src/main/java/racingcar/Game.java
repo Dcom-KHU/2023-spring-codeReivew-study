@@ -22,28 +22,19 @@ public class Game {
 		playGame();
 	}
 
-	public void setCars(String[] carNames) {
+	private void setCars(String[] carNames) {
 
 		for (String carName : carNames) {
 			cars.add(new Car(carName));
 		}
 	}
 
-	public void setMaxMove(int maxMove) {
+	private void setMaxMove(int maxMove) {
 
 		this.maxMove = maxMove;
 	}
 
-	public int findMaxPosition() {
-
-		int maxPosition = 0;
-		for (Car car : cars) {
-			maxPosition = Math.max(maxPosition, car.getPosition());
-		}
-		return maxPosition;
-	}
-
-	public void playGame() {
+	private void playGame() {
 		System.out.println("실행 결과");
 		while (currentMove < maxMove) {
 			PrintTool.printProgress(cars);
@@ -52,7 +43,7 @@ public class Game {
 		PrintTool.printWinners(findWinner());
 	}
 
-	public List<String> findWinner() {
+	private List<String> findWinner() {
 
 		List<String> winners = new ArrayList<>();
 		int maxPosition = findMaxPosition();
@@ -63,6 +54,15 @@ public class Game {
 			}
 		}
 		return winners;
+	}
+
+	private int findMaxPosition() {
+
+		int maxPosition = 0;
+		for (Car car : cars) {
+			maxPosition = Math.max(maxPosition, car.getPosition());
+		}
+		return maxPosition;
 	}
 
 }
