@@ -2,10 +2,10 @@ package tools;
 
 public class Utility {
 	public static String repeatString(int count, String str) {
-		StringBuilder result = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 		for (int cnt = 0; cnt < count; cnt++) {
-			result.append(str);
+			stringBuilder.append(str);
 		}
-		return result.toString();
+		return stringBuilder.toString();
 	}
 }
