@@ -22,6 +22,7 @@ public class Game {
 	}
 
 	public void start() {
+		make();
 		run();
 		Output.printResult(this.cars);
 	}
