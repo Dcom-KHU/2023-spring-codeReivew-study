@@ -1,6 +1,7 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import tools.Utility;
 
 public class Car {
 	private final String name;
@@ -16,11 +17,6 @@ public class Car {
 		return this.name;
 	}
 
-	public void printCar() {
-
-		System.out.println(name + " : " + getPositionString());
-	}
-
 	public void updatePosition() {
 
 		if (canAdvance()) {
@@ -34,19 +30,13 @@ public class Car {
 	}
 
 	public int getPosition() {
+
 		return position;
 	}
 
 	public String getPositionString() {
 
-		return repeatString(position, "-");
+		return Utility.repeatString(position, "-");
 	}
 
-	public static String repeatString(int count, String str) {
-		StringBuilder result = new StringBuilder();
-		for (int cnt = 0; cnt < count; cnt++) {
-			result.append(str);
-		}
-		return result.toString();
-	}
 }

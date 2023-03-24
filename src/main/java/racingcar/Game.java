@@ -2,7 +2,8 @@ package racingcar;
 
 import java.util.ArrayList;
 
-import camp.nextstep.edu.missionutils.Console;
+import tools.InputTool;
+import tools.PrintTool;
 
 public class Game {
 	private int currentMove = 0;
@@ -15,12 +16,12 @@ public class Game {
 
 	public void initiateGame() {
 
-		makeCars(inputCarNames());
-		maxMove = inputMaxMoves();
+		setCars(InputTool.getCarNames());
+		setMaxMove(InputTool.getMaxMoves());
 		playGame();
 	}
 
-	public void makeCars(String[] carNames) {
+	public void setCars(String[] carNames) {
 
 		cars = new Car[carNames.length];
 		for (int index = 0; index < carNames.length; index++) {
@@ -28,55 +29,9 @@ public class Game {
 		}
 	}
 
-	public String[] inputCarNames() {
+	public void setMaxMove(int maxMove) {
 
-		System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-		String userInput = Console.readLine();
-		String[] cars = userInput.split(",");
-		try {
-			checkValidNames(cars);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return inputCarNames();
-		}
-		return cars;
-	}
-
-	public void checkValidNames(String[] cars) {
-
-		for (String car : cars) {
-			if (car.length() > 5) {
-				throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다.");
-			}
-		}
-	}
-
-	public int inputMaxMoves() {
-
-		System.out.println("시도할 회수는 몇회인가요?");
-		String userInput = Console.readLine();
-		int inputMoves;
-		try {
-			inputMoves = checkValidMoves(userInput);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			return inputMaxMoves();
-		}
-		return inputMoves;
-	}
-
-	public int checkValidMoves(String userInput) {
-
-		int inputMoves;
-		try {
-			inputMoves = Integer.parseInt(userInput);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
-		}
-		if (inputMoves <= 0) {
-			throw new IllegalArgumentException("[ERROR] 시도 횟수는 양의 정수여야 한다.");
-		}
-		return inputMoves;
+		this.maxMove = maxMove;
 	}
 
 	public int findMaxPosition() {
@@ -91,19 +46,11 @@ public class Game {
 	public void playGame() {
 		System.out.println("실행 결과");
 		while (currentMove < maxMove) {
-			printProgress();
+			PrintTool.printProgress(cars);
 			currentMove++;
 		}
 		winners = findWinner();
-		printWinners();
-	}
-
-	public void printProgress() {
-		for (Car car : cars) {
-			car.updatePosition();
-			car.printCar();
-		}
-		System.out.println();
+		PrintTool.printWinners(winners);
 	}
 
 	public ArrayList<String> findWinner() {
@@ -119,9 +66,4 @@ public class Game {
 		return winners;
 	}
 
-	public void printWinners() {
-
-		String str = String.join(", ", winners);
-		System.out.println("최종 우승자 : " + str);
-	}
 }
