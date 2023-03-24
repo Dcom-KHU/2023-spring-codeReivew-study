@@ -15,6 +15,7 @@ public class Output {
 
 	static void printResult(List<Car> cars) {
 		List<String> winner = new ArrayList<>();
+		sortByPosition(cars);
 		int maxValue = findMaxValue(cars);
 
 		for (Car car : cars) {
@@ -28,7 +29,6 @@ public class Output {
 	}
 
 	private static int findMaxValue(List<Car> cars) {
-		sortByPosition(cars);
 		return cars.get(0).getPosition();
 	}
 
