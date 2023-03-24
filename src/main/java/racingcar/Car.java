@@ -1,47 +1,52 @@
 package racingcar;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Car {
-    private final String name;
-    private int position = 0;
-    public Car(String name) {
+	private final String name;
+	private int position = 0;
 
-        this.name = name;
-    }
-    public String getName() {
+	public Car(String name) {
 
-        return this.name;
-    }
+		this.name = name;
+	}
 
-    public void printCar() {
+	public String getName() {
 
-        System.out.println(name+" : "+getPositionString());
-    }
+		return this.name;
+	}
 
-    public void updatePosition() {
+	public void printCar() {
 
-        if(canAdvance()){
-            position++;
-        }
-    }
-    public boolean canAdvance() {
+		System.out.println(name + " : " + getPositionString());
+	}
 
-        return pickNumberInRange(0, 9) >= 4;
-    }
-    public int getPosition() {
-        return position;
-    }
+	public void updatePosition() {
 
-    public String getPositionString() {
+		if (canAdvance()) {
+			position++;
+		}
+	}
 
-        return repeatString(position, "-");
-    }
+	public boolean canAdvance() {
 
-    public static String repeatString(int count, String str) {
-        StringBuilder result = new StringBuilder();
-        for(int cnt = 0; cnt < count; cnt++){
-            result.append(str);
-        }
-        return result.toString();
-    }
+		return Randoms.pickNumberInRange(0, 9) >= 4;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public String getPositionString() {
+
+		return repeatString(position, "-");
+	}
+
+	public static String repeatString(int count, String str) {
+		StringBuilder result = new StringBuilder();
+		for (int cnt = 0; cnt < count; cnt++) {
+			result.append(str);
+		}
+		return result.toString();
+	}
 }

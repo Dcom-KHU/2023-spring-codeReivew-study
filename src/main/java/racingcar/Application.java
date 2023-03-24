@@ -1,127 +1,134 @@
 package racingcar;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
 import java.util.ArrayList;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class Application {
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.initiateGame();
-    }
+	public static void main(String[] args) {
+		Game game = new Game();
+		game.initiateGame();
+	}
 }
 
 class Game {
-    private int currentMove = 0;
-    private int maxMove;
-    private Car[] cars;
-    private ArrayList<String> winners;
-    Game() {}
-    public void initiateGame(){
+	private int currentMove = 0;
+	private int maxMove;
+	private Car[] cars;
+	private ArrayList<String> winners;
 
-        makeCars(inputCarNames());
-        maxMove = inputMaxMoves();
-        playGame();
-    }
+	Game() {
+	}
 
-    public void makeCars(String[] carNames) {
+	public void initiateGame() {
 
-        cars = new Car[carNames.length];
-        for(int index = 0; index < carNames.length; index++) {
-            cars[index] = new Car(carNames[index]);
-        }
-    }
+		makeCars(inputCarNames());
+		maxMove = inputMaxMoves();
+		playGame();
+	}
 
-    public String[] inputCarNames() {
+	public void makeCars(String[] carNames) {
 
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        String userInput = readLine();
-        String[] cars = userInput.split(",");
-        try{
-            checkValidNames(cars);
-        } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputCarNames();
-        }
-        return cars;
-    }
-    public void checkValidNames(String[] cars) {
+		cars = new Car[carNames.length];
+		for (int index = 0; index < carNames.length; index++) {
+			cars[index] = new Car(carNames[index]);
+		}
+	}
 
-        for (String car : cars) {
-            if (car.length() > 5) {
-                throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다.");
-            }
-        }
-    }
+	public String[] inputCarNames() {
 
-    public int inputMaxMoves() {
+		System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+		String userInput = Console.readLine();
+		String[] cars = userInput.split(",");
+		try {
+			checkValidNames(cars);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return inputCarNames();
+		}
+		return cars;
+	}
 
-        System.out.println("시도할 회수는 몇회인가요?");
-        String userInput = readLine();
-        int inputMoves;
-        try{
-            inputMoves = checkValidMoves(userInput);
-        } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputMaxMoves();
-        }
-        return inputMoves;
-    }
+	public void checkValidNames(String[] cars) {
 
-    public int checkValidMoves(String userInput) {
+		for (String car : cars) {
+			if (car.length() > 5) {
+				throw new IllegalArgumentException("[ERROR] 이름은 5자 이하여야 합니다.");
+			}
+		}
+	}
 
-        int inputMoves;
-        try{
-            inputMoves = Integer.parseInt(userInput);
-        } catch(NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
-        }
-        if(inputMoves <= 0){
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 양의 정수여야 한다.");
-        }
-        return inputMoves;
-    }
+	public int inputMaxMoves() {
 
-    public int findMaxPosition() {
+		System.out.println("시도할 회수는 몇회인가요?");
+		String userInput = Console.readLine();
+		int inputMoves;
+		try {
+			inputMoves = checkValidMoves(userInput);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return inputMaxMoves();
+		}
+		return inputMoves;
+	}
 
-        int maxPosition = 0;
-        for(Car car : cars){
-            maxPosition = Math.max(maxPosition, car.getPosition());
-        }
-        return maxPosition;
-    }
+	public int checkValidMoves(String userInput) {
 
-    public void playGame() {
-        System.out.println("실행 결과");
-        while(currentMove < maxMove) {
-            printProgress();
-            currentMove++;
-        }
-        winners = findWinner();
-        printWinners();
-    }
-    public void printProgress() {
-        for(Car car : cars){
-            car.updatePosition();
-            car.printCar();
-        }
-        System.out.println();
-    }
-    public ArrayList<String> findWinner() {
+		int inputMoves;
+		try {
+			inputMoves = Integer.parseInt(userInput);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
+		}
+		if (inputMoves <= 0) {
+			throw new IllegalArgumentException("[ERROR] 시도 횟수는 양의 정수여야 한다.");
+		}
+		return inputMoves;
+	}
 
-        ArrayList<String> winners = new ArrayList<>();
-        int maxPosition = findMaxPosition();
+	public int findMaxPosition() {
 
-        for(Car car : cars) {
-            if(car.getPosition() == maxPosition) {
-                winners.add(car.getName());
-            }
-        }
-        return winners;
-    }
-    public void printWinners() {
+		int maxPosition = 0;
+		for (Car car : cars) {
+			maxPosition = Math.max(maxPosition, car.getPosition());
+		}
+		return maxPosition;
+	}
 
-        String str = String.join(", ", winners);
-        System.out.println("최종 우승자 : " + str);
-    }
+	public void playGame() {
+		System.out.println("실행 결과");
+		while (currentMove < maxMove) {
+			printProgress();
+			currentMove++;
+		}
+		winners = findWinner();
+		printWinners();
+	}
+
+	public void printProgress() {
+		for (Car car : cars) {
+			car.updatePosition();
+			car.printCar();
+		}
+		System.out.println();
+	}
+
+	public ArrayList<String> findWinner() {
+
+		ArrayList<String> winners = new ArrayList<>();
+		int maxPosition = findMaxPosition();
+
+		for (Car car : cars) {
+			if (car.getPosition() == maxPosition) {
+				winners.add(car.getName());
+			}
+		}
+		return winners;
+	}
+
+	public void printWinners() {
+
+		String str = String.join(", ", winners);
+		System.out.println("최종 우승자 : " + str);
+	}
 }
