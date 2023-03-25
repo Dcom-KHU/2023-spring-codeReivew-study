@@ -17,7 +17,7 @@ public class Application {
             outputView.printExecutionResults(cars);
         }
 
-        outputView.printFinalWinner(cars);
+        outputView.printFinalWinner(getWinnerNames(cars));
     }
 
     private static List<Car> initializeCars(List<String> carNames) {
@@ -32,5 +32,20 @@ public class Application {
         for (Car car : cars) {
             car.forward();
         }
+    }
+
+    private static List<String> getWinnerNames(List<Car> cars) {
+        List<String> winnerNames = new ArrayList<>();
+        int max = 0;
+        for (Car car : cars) {
+            if (car.getPosition() > max) {
+                winnerNames.clear();
+                max = car.getPosition();
+            }
+            if (car.getPosition() == max) {
+                winnerNames.add(car.getName());
+            }
+        }
+        return winnerNames;
     }
 }
