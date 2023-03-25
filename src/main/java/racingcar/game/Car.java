@@ -32,7 +32,7 @@ public class Car {
     }
 
     public String toString() {
-        return String.format("%s : %s",this.name, getMoveString());
+        return String.format("%s : %s",this.name, getMovingPositionLine());
     }
 
     public void move() {
@@ -41,11 +41,11 @@ public class Car {
         }
     }
 
-    private String getMoveString() {
-        List<String> movePositionList = Arrays.stream(new String[this.position])
+    private String getMovingPositionLine() {
+        List<String> movingPositions = Arrays.stream(new String[this.position])
                 .map(s -> "-")
                 .collect(Collectors.toList());
 
-        return String.join("", movePositionList);
+        return String.join("", movingPositions);
     }
 }

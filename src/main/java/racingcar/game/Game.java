@@ -8,37 +8,37 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-    private final List<Car> carList;
+    private final List<Car> cars;
     private final int totalRound;
 
-    public Game(List<Car> carList, int totalRound) {
-        this.carList = carList;
+    public Game(List<Car> cars, int totalRound) {
+        this.cars = cars;
         this.totalRound = totalRound;
     }
 
     public void start() {
-        Round round = new Round(carList);
+        Round round = new Round(cars);
 
         PrintManager.printGameResultHead();
         while (round.getCurrentRound() <= totalRound) {
             round.play();
         }
 
-        List<Car> winnerList = findWinners();
-        PrintManager.printWinnersName(winnerList);
+        List<Car> winningCars = findWinningCars();
+        PrintManager.printWinningCarsName(winningCars);
     }
 
-    private List<Car> findWinners() {
-        if (carList.size() == 0) {
+    private List<Car> findWinningCars() {
+        if (cars.size() == 0) {
             return Collections.emptyList();
         }
 
-        int maxPosition = carList.stream()
+        int maxPosition = cars.stream()
                 .map(Car::getPosition)
                 .max(Integer::compareTo)
                 .get();
 
-        return carList.stream()
+        return cars.stream()
                 .filter(car -> car.getPosition() == maxPosition)
                 .collect(Collectors.toList());
     }

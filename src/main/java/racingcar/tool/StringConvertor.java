@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class StringConvertor {
 
-    public static List<Car> convertIntoCarList(String carNames) throws IllegalArgumentException {
+    public static List<Car> convertIntoCars(String carNames) throws IllegalArgumentException {
         return Arrays.stream(carNames.split(","))
                 .map(String::trim)
                 .map(Car::createCar)

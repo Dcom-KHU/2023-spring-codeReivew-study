@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Round {
     private int currentRound;
-    private final List<Car> carList;
+    private final List<Car> cars;
 
-    public Round(List<Car> carList) {
+    public Round(List<Car> cars) {
         this.currentRound = 1;
-        this.carList = carList;
+        this.cars = cars;
     }
 
     public int getCurrentRound() {
@@ -19,12 +19,12 @@ public class Round {
 
     public void play() {
         moveAllCars();
-        PrintManager.printAllCarsStatus(carList);
+        PrintManager.printAllCarsStatus(cars);
         this.currentRound += 1;
     }
 
     private void moveAllCars() {
-        carList.forEach(Car::move);
+        cars.forEach(Car::move);
     }
 
 }

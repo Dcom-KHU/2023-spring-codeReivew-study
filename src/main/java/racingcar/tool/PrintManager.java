@@ -3,7 +3,6 @@ package racingcar.tool;
 import racingcar.game.Car;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PrintManager {
 
@@ -15,23 +14,15 @@ public class PrintManager {
         System.out.println("시도할 회수는 몇회인가요?");
     }
 
-    public static void printAllCarsStatus(List<Car> carList) {
-        carList.forEach(System.out::println);
+    public static void printAllCarsStatus(List<Car> cars) {
+        cars.forEach(System.out::println);
         System.out.println();
     }
 
-    public static void printWinnersName(List<Car> carList) {
-        String winnersName = getWinnersString(carList);
+    public static void printWinningCarsName(List<Car> winningCars) {
+        String winningCarsName = ListConvertor.joinCarsName(", ", winningCars);
 
-        System.out.printf("최종 우승자 : %s", winnersName);
-    }
-
-    private static String getWinnersString(List<Car> carList) {
-        List<String> winnerNameList = carList.stream()
-                .map(Car::getName)
-                .collect(Collectors.toList());
-
-        return String.join(", ", winnerNameList);
+        System.out.printf("최종 우승자 : %s", winningCarsName);
     }
 
     public static void printGameResultHead() {

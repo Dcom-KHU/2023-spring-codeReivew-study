@@ -15,7 +15,7 @@ public class InputUtils {
             //for to split last comma, ' ' is going to be removed by trim func.
             String carNames = Console.readLine() + ' ';
             try {
-                return StringConvertor.convertIntoCarList(carNames);
+                return StringConvertor.convertIntoCars(carNames);
             } catch (IllegalArgumentException exception) {
                 PrintManager.printErrorMessage(exception.getMessage());
             }
