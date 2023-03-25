@@ -18,11 +18,11 @@ public class CarGame {
 
     public void start() {
         List<Car> cars = inputView.getCars();
-        Integer trial = inputView.getTrial();
+        int trial = inputView.getTrial();
         startGame(cars, trial);
     }
 
-    private void startGame(List<Car> cars, Integer trial) {
+    private void startGame(List<Car> cars, int trial) {
         outputView.printInit();
         for (int i = 0; i < trial; i++) {
             for (Car car : cars) {
