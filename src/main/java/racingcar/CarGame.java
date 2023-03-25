@@ -43,13 +43,13 @@ public class CarGame {
 
     private List<String> pickWinner(List<Car> cars) {
         List<String> winner = new ArrayList<>();
-        int MAX_DISTANCE = -1;
+        int maxDistance = -1;
         for (Car car : cars) {
-            if (car.getPosition() == MAX_DISTANCE) {
+            if (car.getPosition() == maxDistance) {
                 winner.add(car.getName());
             }
-            if (car.getPosition() > MAX_DISTANCE) {
-                MAX_DISTANCE = car.getPosition();
+            if (car.getPosition() > maxDistance) {
+                maxDistance = car.getPosition();
                 winner.clear();
                 winner.add(car.getName());
             }
