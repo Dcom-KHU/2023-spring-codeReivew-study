@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class ListConvertor {
 
+    private ListConvertor() {}
+
     public static String joinCarsName(String delimiter, List<Car> cars) {
         List<String> names = cars.stream()
                 .map(Car::getName)

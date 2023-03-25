@@ -8,6 +8,8 @@ import java.util.List;
 
 public class InputUtils {
 
+    private InputUtils() {}
+
     public static List<Car> getCarListFromInput() {
         while (true) {
             PrintManager.printCarNameInputDescription();

@@ -2,6 +2,7 @@ package racingcar.tool;
 
 public class StringValidator {
 
+    private StringValidator() {}
 
     public static void cannotUseCarName(String carName) throws IllegalArgumentException {
         if (carName.length() == 0) {
