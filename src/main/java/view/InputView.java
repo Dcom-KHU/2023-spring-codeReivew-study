@@ -7,11 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    private final InputValidator inputValidator;
-
-    public InputView() {
-        this.inputValidator = new InputValidator();
-    }
 
     public List<Car> getCars() {
         while (true) {
@@ -27,8 +22,8 @@ public class InputView {
     }
 
     private String[] validateCarString(String carString) {
-        String[] carNames = inputValidator.validateSplit(carString);
-        inputValidator.validateEmpty(carNames);
+        String[] carNames = InputValidator.validateSplit(carString);
+        InputValidator.validateEmpty(carNames);
         return carNames;
     }
 
@@ -38,7 +33,7 @@ public class InputView {
                 carNames) {
             cars.add(new Car(carName));
         }
-        inputValidator.validateCarNames(cars);
+        InputValidator.validateCarNames(cars);
         return cars;
     }
 
@@ -47,7 +42,7 @@ public class InputView {
             try {
                 System.out.println("시도할 횟수는 몇회인가요?");
                 String trial = Console.readLine();
-                return inputValidator.validateTrial(trial);
+                return InputValidator.validateTrial(trial);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

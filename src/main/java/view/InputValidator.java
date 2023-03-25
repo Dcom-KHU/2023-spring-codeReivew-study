@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 public class InputValidator {
-    public String[] validateSplit(String carString) {
+    public static String[] validateSplit(String carString) {
         try {
             return carString.split(",");
         } catch (PatternSyntaxException e) {
@@ -14,7 +14,7 @@ public class InputValidator {
         }
     }
 
-    public void validateCarNames(List<Car> cars) {
+    public static void validateCarNames(List<Car> cars) {
         for (Car car : cars) {
             String carName = car.getName();
             if (carName.length() > 5) {
@@ -23,7 +23,7 @@ public class InputValidator {
         }
     }
 
-    public void validateEmpty(String[] carNames) {
+    public static void validateEmpty(String[] carNames) {
         if (carNames.length == 0) {
             throw new IllegalArgumentException("[ERROR] 자동차는 1대 이상 입력 되어야 한다.");
         }
@@ -35,7 +35,7 @@ public class InputValidator {
         }
     }
 
-    public Integer validateTrial(String trial) {
+    public static Integer validateTrial(String trial) {
         try {
             Integer trialNum = Integer.valueOf(trial);
             if (trialNum < 0) {
