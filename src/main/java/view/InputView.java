@@ -14,7 +14,7 @@ public class InputView {
                 System.out.println("경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분)");
                 String carString = Console.readLine();
                 String[] carNames = getCarNamesStringArray(carString);
-                return getCarNamesCarList(carNames);
+                return getCarList(carNames);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -28,13 +28,18 @@ public class InputView {
         return carNames;
     }
 
-    private List<Car> getCarNamesCarList(String[] carNames) {
+    private List<Car> getCarList(String[] carNames) {
+        List<Car> cars = getCarArrayList(carNames);
+        InputValidator.validateCarNames(cars);
+        return cars;
+    }
+
+    private List<Car> getCarArrayList(String[] carNames) {
         List<Car> cars = new ArrayList<>();
         for (String carName :
                 carNames) {
             cars.add(new Car(carName));
         }
-        InputValidator.validateCarNames(cars);
         return cars;
     }
 
