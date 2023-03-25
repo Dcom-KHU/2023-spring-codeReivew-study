@@ -18,6 +18,11 @@ public class Car {
 		return this.name;
 	}
 
+	public String toString() {
+		String distance = new String(new char[this.getPosition()]).replace("\0", "-");
+		return this.getName() + " : " + distance;
+	}
+
 	// 추가 기능 구현
 	void move() {
 		if (Randoms.pickNumberInRange(0, 9) >= 4) {
