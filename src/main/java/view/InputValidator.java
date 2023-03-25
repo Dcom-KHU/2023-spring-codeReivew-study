@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 public class InputValidator {
-    public static String[] validateSplit(String carString) {
+    public static void validateSplit(String carString) {
         try {
-            return carString.split(",");
+            String[] split = carString.split(",");
         } catch (PatternSyntaxException e) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 쉼표를 기준으로 구분되어야 한다.");
         }
@@ -35,13 +35,12 @@ public class InputValidator {
         }
     }
 
-    public static Integer validateTrial(String trial) {
+    public static void validateTrial(String trial) {
         try {
-            Integer trialNum = Integer.valueOf(trial);
+            int trialNum = Integer.parseInt(trial);
             if (trialNum < 0) {
                 throw new IllegalArgumentException("[ERROR] 시도 횟수는 음수일 수 없다.");
             }
-            return trialNum;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 한다.");
         }
