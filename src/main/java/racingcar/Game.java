@@ -35,6 +35,7 @@ public class Game {
 			}
 			winner.add(car.getName());
 		}
+
 		return winner;
 	}
 
